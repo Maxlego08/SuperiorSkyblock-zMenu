@@ -1,0 +1,39 @@
+name: '&8Island Coop Players (%coop%/%max-coop%)'
+
+items:
+  decoration:
+    isPermanent: true
+    slots:
+      - 36-53
+    item:
+      material: CYAN_STAINED_GLASS_PANE
+      name: '&f'
+  players:
+    type: SUPERIORSKYBLOCK_COOPS
+    slots:
+      - 0-35
+    item:
+      material: PLAYER_HEAD
+      name: '&e%player%'
+      lore:
+        - '&7Click to uncoop the player.'
+    else:
+      slots:
+        - 22
+      item:
+        material: BARRIER
+        name: "&cNo player coop"
+  next:
+    type: NEXT
+    slot: 50
+    isPermanent: true
+    item:
+      material: PAPER
+      name: '&fNext Page'
+  previous:
+    type: PREVIOUS
+    slot: 48
+    isPermanent: true
+    item:
+      material: PAPER
+      name: '&fPrevious Page'
