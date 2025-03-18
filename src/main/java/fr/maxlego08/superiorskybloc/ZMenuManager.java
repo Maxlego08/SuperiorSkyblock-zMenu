@@ -348,5 +348,4 @@ public class ZMenuManager implements Listener {
     public Inventory getInventory(MenuType menuType) {
         return this.inventories.get(menuType);
     }
-
 }

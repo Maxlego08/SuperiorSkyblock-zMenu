@@ -18,9 +18,7 @@ public final class ZMenuModule extends PluginModule {
 
     @Override
     public void onEnable(SuperiorSkyblock superiorSkyblock) {
-        System.out.println("Oui je load bien le module zMenu !");
         SuperiorSkyblockPlugin plugin = (SuperiorSkyblockPlugin) Bukkit.getPluginManager().getPlugin("SuperiorSkyblock2");
-        System.out.println("Plugin : " + plugin);
         SuperiorSkyblockAPI.getProviders().setMenusProvider(this.menusProvider = new ZMenusProvider(plugin));
     }
 
