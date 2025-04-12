@@ -14,6 +14,7 @@ import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
 import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -115,7 +116,7 @@ public class IslandTopButton extends SuperiorButton {
                 }
             } else lore.add(line);
         }
-        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse).collect(Collectors.toList()), player);
+        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse).map(e -> PlaceholderAPI.setPlaceholders(player, e)).collect(Collectors.toList()), player);
 
         itemStack.setItemMeta(itemMeta);
         itemStack = ItemSkulls.getPlayerHead(itemStack, islandOwner.getTextureValue());

@@ -15,9 +15,9 @@ repositories {
         name = "sonatype"
         url = "https://oss.sonatype.org/content/groups/public/"
     }
-    /*maven {
-        url = 'https://repo.bg-software.com/repository/api/'
-    }*/
+    maven {
+        url = 'https://repo.extendedclip.com/releases/'
+    }
     maven {
         url = 'https://jitpack.io'
     }
@@ -26,8 +26,9 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     // compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2024.4")
-    compileOnly files('libs/SuperiorSkyblock2-2024.4.jar')
+    compileOnly files('libs/SuperiorSkyblock2-2024.4-b445.jar')
     compileOnly("com.github.Maxlego08:zMenu-API:1.0.3.8")
+    compileOnly("me.clip:placeholderapi:2.11.6")
 }
 
 def targetJavaVersion = 21

@@ -14,6 +14,7 @@ import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
 import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
 import fr.maxlego08.superiorskybloc.utils.Permission;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -84,7 +85,7 @@ public class IslandPermissionButton extends SuperiorButton implements PaginateBu
                 }
             }
 
-            updater.updateLore(itemMeta, strings, player);
+            updater.updateLore(itemMeta, PlaceholderAPI.setPlaceholders(player, strings), player);
             itemStack.setItemMeta(itemMeta);
 
             inventory.addItem(slot, itemStack).setClick(event -> {
