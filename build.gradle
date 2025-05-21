@@ -27,7 +27,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     // compileOnly("com.bgsoftware:SuperiorSkyblockAPI:2024.4")
     compileOnly files('libs/SuperiorSkyblock2-2024.4-b445.jar')
-    compileOnly("com.github.Maxlego08:zMenu-API:1.0.3.8")
+    compileOnly files('libs/zMenu-API-1.1.0.0.jar')
     compileOnly("me.clip:placeholderapi:2.11.6")
 }
 

@@ -9,8 +9,8 @@ import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
 import org.bukkit.entity.Player;
@@ -30,7 +30,7 @@ public class BankLogsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onInventoryOpen(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public void onInventoryOpen(Player player, InventoryEngine inventory, Placeholders placeholders) {
         super.onInventoryOpen(player, inventory, placeholders);
 
         PlayerCache playerCache = getCache(player);
@@ -43,7 +43,7 @@ public class BankLogsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<BankTransaction> pagination = new Pagination<>();
         List<BankTransaction> bankTransactions = pagination.paginate(this.getSortTransactions(player), this.slots.size(), inventory.getPage());

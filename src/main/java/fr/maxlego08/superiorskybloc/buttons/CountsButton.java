@@ -17,8 +17,8 @@ import com.bgsoftware.superiorskyblock.core.values.BlockValue;
 import com.google.common.collect.ImmutableMap;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.utils.BlockCount;
 import org.bukkit.Material;
@@ -64,7 +64,7 @@ public class CountsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return getPaginationSize(player) != 0;
     }
 
@@ -74,7 +74,7 @@ public class CountsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<BlockCount> pagination = new Pagination<>();
         List<BlockCount> blockCounts = pagination.paginate(requestObjects(player), this.slots.size(), inventory.getPage());

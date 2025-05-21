@@ -6,8 +6,8 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.itemstack.ItemSkulls;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -20,7 +20,7 @@ public class VisitorsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onInventoryOpen(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public void onInventoryOpen(Player player, InventoryEngine inventory, Placeholders placeholders) {
         super.onInventoryOpen(player, inventory, placeholders);
         placeholders.register("visitor", String.valueOf(getCache(player).getIsland().getUniqueVisitorsWithTimes().size()));
     }
@@ -31,7 +31,7 @@ public class VisitorsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return getPaginationSize(player) != 0;
     }
 
@@ -41,7 +41,7 @@ public class VisitorsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<SuperiorPlayer> pagination = new Pagination<>();
         List<SuperiorPlayer> uniqueVisitorInfos = pagination.paginate(requestObjects(player), this.slots.size(), inventory.getPage());

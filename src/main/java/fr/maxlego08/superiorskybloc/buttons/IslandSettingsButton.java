@@ -9,8 +9,8 @@ import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import fr.maxlego08.menu.MenuItemStack;
 import fr.maxlego08.menu.api.button.PaginateButton;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.utils.Setting;
 import fr.maxlego08.superiorskybloc.utils.SettingOtherButton;
 import org.bukkit.entity.Player;
@@ -34,7 +34,7 @@ public class IslandSettingsButton extends SuperiorButton implements PaginateButt
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<Setting> pagination = new Pagination<>();
         List<Setting> settings = pagination.paginate(this.settings, this.slots.size(), inventory.getPage());

@@ -9,12 +9,12 @@ import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.menu.MenuActions;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import com.bgsoftware.superiorskyblock.island.privilege.IslandPrivileges;
-import fr.maxlego08.menu.MenuItemStack;
+import fr.maxlego08.menu.api.MenuItemStack;
 import fr.maxlego08.menu.api.button.PaginateButton;
+import fr.maxlego08.menu.api.engine.ItemButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.ItemButton;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
 import org.bukkit.entity.Player;
@@ -37,7 +37,7 @@ public class WarpsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return getPaginationSize(player) != 0;
     }
 
@@ -47,7 +47,7 @@ public class WarpsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<IslandWarp> pagination = new Pagination<>();
         List<IslandWarp> islandWarps = pagination.paginate(requestObjects(player), this.slots.size(), inventory.getPage());

@@ -5,7 +5,7 @@ import com.bgsoftware.superiorskyblock.api.island.warps.IslandWarp;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import com.bgsoftware.superiorskyblock.player.chat.PlayerChat;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class WarpIconNameButton extends SuperiorButton {
     }
 
     @Override
-    public void onInventoryOpen(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public void onInventoryOpen(Player player, InventoryEngine inventory, Placeholders placeholders) {
         super.onInventoryOpen(player, inventory, placeholders);
 
         IslandWarp islandWarp = getCache(player).getIslandWarp();
@@ -26,7 +26,7 @@ public class WarpIconNameButton extends SuperiorButton {
     }
 
     @Override
-    public void onClick(Player player, InventoryClickEvent event, InventoryDefault inventory, int slot, Placeholders placeholders) {
+    public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot, Placeholders placeholders) {
         super.onClick(player, event, inventory, slot, placeholders);
 
         Message.WARP_ICON_NEW_NAME.send(player);

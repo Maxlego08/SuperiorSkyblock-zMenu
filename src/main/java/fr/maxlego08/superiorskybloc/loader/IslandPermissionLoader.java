@@ -2,12 +2,10 @@ package fr.maxlego08.superiorskybloc.loader;
 
 import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
-import fr.maxlego08.menu.MenuItemStack;
+import fr.maxlego08.menu.api.InventoryManager;
+import fr.maxlego08.menu.api.MenuItemStack;
 import fr.maxlego08.menu.api.button.Button;
 import fr.maxlego08.menu.api.button.DefaultButtonValue;
-import fr.maxlego08.menu.exceptions.InventoryException;
-import fr.maxlego08.menu.loader.MenuItemStackLoader;
-import fr.maxlego08.menu.zcore.utils.loader.Loader;
 import fr.maxlego08.superiorskybloc.buttons.IslandPermissionButton;
 import fr.maxlego08.superiorskybloc.utils.Permission;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -21,11 +19,6 @@ public class IslandPermissionLoader extends SuperiorButtonLoader {
 
     public IslandPermissionLoader(SuperiorSkyblockPlugin plugin) {
         super(plugin, "PERMISSIONS");
-    }
-
-    @Override
-    public Class<? extends Button> getButton() {
-        return IslandPermissionButton.class;
     }
 
     @Override
@@ -51,20 +44,12 @@ public class IslandPermissionLoader extends SuperiorButtonLoader {
         return new IslandPermissionButton(plugin, noRolePermission, exactRolePermission, higherRolePermission, permissions);
     }
 
-    private Permission loadPermission(String permission, YamlConfiguration configuration, String path, Loader<MenuItemStack> loader) {
+    private Permission loadPermission(String permission, YamlConfiguration configuration, String path, InventoryManager inventoryManager) {
 
         File file = new File(plugin.getDataFolder(), "inventories/permissions.yml");
-        MenuItemStack itemStackEnabled = null;
-        MenuItemStack itemStackDisabled = null;
-        MenuItemStack itemStackPermission = null;
-
-        try {
-            itemStackEnabled = loader.load(configuration, path + "permission-enabled.", file);
-            itemStackDisabled = loader.load(configuration, path + "permission-disabled.", file);
-            itemStackPermission = loader.load(configuration, path + "role-permission.", file);
-        } catch (InventoryException exception) {
-            exception.printStackTrace();
-        }
+        MenuItemStack itemStackEnabled = inventoryManager.loadItemStack(configuration, path + "permission-enabled.", file);
+        MenuItemStack itemStackDisabled = inventoryManager.loadItemStack(configuration, path + "permission-disabled.", file);
+        MenuItemStack itemStackPermission = inventoryManager.loadItemStack(configuration, path + "role-permission.", file);
 
         IslandPrivilege islandPrivilege = IslandPrivilege.getByName(permission);
 

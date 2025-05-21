@@ -14,11 +14,6 @@ public class GlobalWarpsLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return BankLogsSortButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         boolean visitorWarps = configuration.getBoolean("visitor-warps");
         return new GlobalWarpsButton(this.plugin, visitorWarps);

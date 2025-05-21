@@ -11,8 +11,8 @@ import fr.maxlego08.menu.MenuItemStack;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.MetaUpdater;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.utils.Permission;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
@@ -45,7 +45,7 @@ public class IslandPermissionButton extends SuperiorButton implements PaginateBu
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         SuperiorPlayer superiorPlayer = getSuperiorPlayer(player);
         Island island = superiorPlayer.getIsland();

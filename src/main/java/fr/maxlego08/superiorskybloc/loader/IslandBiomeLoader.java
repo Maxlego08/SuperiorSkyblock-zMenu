@@ -11,13 +11,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.util.Locale;
 
 public class IslandBiomeLoader extends SuperiorButtonLoader {
+
     public IslandBiomeLoader(SuperiorSkyblockPlugin plugin) {
         super(plugin, "BIOMES");
-    }
-
-    @Override
-    public Class<? extends Button> getButton() {
-        return IslandBiomeButton.class;
     }
 
     @Override

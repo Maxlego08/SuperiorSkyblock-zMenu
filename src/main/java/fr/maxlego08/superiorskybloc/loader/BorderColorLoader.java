@@ -14,11 +14,6 @@ public class BorderColorLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return BorderColorButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         BorderColor borderColor = BorderColor.valueOf(configuration.getString(path + "border-color", BorderColor.BLUE.name()));
         return new BorderColorButton(plugin, borderColor);

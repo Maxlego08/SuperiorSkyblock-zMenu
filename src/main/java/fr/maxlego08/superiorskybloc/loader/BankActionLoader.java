@@ -16,11 +16,6 @@ public class BankActionLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return BankActionButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         BankActionButton.BankAction bankAction = BankActionButton.BankAction.valueOf(configuration.getString(path + "bank-action", BankActionButton.BankAction.DEPOSIT.name()));
         double value = configuration.getDouble(path + "percentage", 0);

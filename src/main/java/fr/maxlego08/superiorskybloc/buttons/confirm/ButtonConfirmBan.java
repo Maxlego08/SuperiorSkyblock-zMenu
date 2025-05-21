@@ -4,7 +4,7 @@ import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.island.IslandUtils;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ public class ButtonConfirmBan extends SuperiorButton {
     }
 
     @Override
-    public void onClick(Player player, InventoryClickEvent event, InventoryDefault inventory, int slot, Placeholders placeholders) {
+    public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot, Placeholders placeholders) {
         super.onClick(player, event, inventory, slot, placeholders);
         PlayerCache playerCache = getCache(player);
         SuperiorPlayer superiorPlayer = getSuperiorPlayer(player);

@@ -8,8 +8,8 @@ import com.bgsoftware.superiorskyblock.core.itemstack.ItemSkulls;
 import com.bgsoftware.superiorskyblock.island.top.SortingComparators;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class GlobalWarpsButton extends SuperiorButton implements PaginateButton 
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return getPaginationSize(player) != 0;
     }
 
@@ -39,7 +39,7 @@ public class GlobalWarpsButton extends SuperiorButton implements PaginateButton 
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<Island> pagination = new Pagination<>();
         List<Island> islands = pagination.paginate(requestObjects(player), this.slots.size(), inventory.getPage());
