@@ -24,8 +24,6 @@ public class IslandPermissionLoader extends SuperiorButtonLoader {
     @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
 
-        Loader<MenuItemStack> loader = new MenuItemStackLoader(this.menuManager.getInventoryManager());
-
         String noRolePermission = configuration.getString(path + "no-role-permission", "");
         String exactRolePermission = configuration.getString(path + "exact-role-permission", "");
         String higherRolePermission = configuration.getString(path + "higher-role-permission", "");
@@ -35,7 +33,7 @@ public class IslandPermissionLoader extends SuperiorButtonLoader {
             for (String permission : permissionSection.getKeys(false)) {
                 Optional.ofNullable(permissionSection.getConfigurationSection(permission)).ifPresent(section -> {
                     if (section.getBoolean("display-menu")) {
-                        permissions.add(loadPermission(permission, configuration, path + "permissions." + permission + ".", loader));
+                        permissions.add(loadPermission(permission, configuration, path + "permissions." + permission + ".", this.menuManager.getInventoryManager()));
                     }
                 });
             }

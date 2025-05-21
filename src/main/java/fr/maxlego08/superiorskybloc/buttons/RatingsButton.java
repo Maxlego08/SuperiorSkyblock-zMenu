@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
 
-public class RatingsButton extends SuperiorButton implements PaginateButton {
+public class RatingsButton extends SuperiorPaginateButton {
 
     private final Function<Map.Entry<UUID, Rating>, RatingInfo> RATING_INFO_MAPPER = entry -> new RatingInfo(entry.getKey(), entry.getValue());
 

@@ -7,8 +7,7 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.events.plugin.PluginEventsFactory;
 import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
-import fr.maxlego08.menu.MenuItemStack;
-import fr.maxlego08.menu.api.button.PaginateButton;
+import fr.maxlego08.menu.api.MenuItemStack;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.utils.Setting;
@@ -19,7 +18,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class IslandSettingsButton extends SuperiorButton implements PaginateButton {
+public class IslandSettingsButton extends SuperiorPaginateButton {
 
     private final List<Setting> settings;
 

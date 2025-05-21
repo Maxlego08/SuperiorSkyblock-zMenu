@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class VisitorsButton extends SuperiorButton implements PaginateButton {
+public class VisitorsButton extends SuperiorPaginateButton {
 
     public VisitorsButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);

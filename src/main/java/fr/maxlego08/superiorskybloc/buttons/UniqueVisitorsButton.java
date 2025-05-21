@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 
-public class UniqueVisitorsButton extends SuperiorButton implements PaginateButton {
+public class UniqueVisitorsButton extends SuperiorPaginateButton {
 
     private final Function<Pair<SuperiorPlayer, Long>, UniqueVisitorInfo> VISITOR_INFO_MAPPER = visitor -> new UniqueVisitorInfo(visitor.getKey(), visitor.getValue());
 

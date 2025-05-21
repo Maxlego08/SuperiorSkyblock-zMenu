@@ -8,6 +8,7 @@ import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import fr.maxlego08.superiorskybloc.buttons.SuperiorPaginateButton;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -17,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.ToIntFunction;
 
-public class IslandMembersButton extends SuperiorButton implements PaginateButton {
+public class IslandMembersButton extends SuperiorPaginateButton {
 
     public IslandMembersButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);

@@ -12,7 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class BannedPlayersButton extends SuperiorButton implements PaginateButton {
+public class BannedPlayersButton extends SuperiorPaginateButton {
 
     public BannedPlayersButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);

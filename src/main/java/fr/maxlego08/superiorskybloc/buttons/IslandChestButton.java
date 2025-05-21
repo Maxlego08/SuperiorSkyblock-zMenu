@@ -14,7 +14,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.Arrays;
 import java.util.List;
 
-public class IslandChestButton extends SuperiorButton implements PaginateButton {
+public class IslandChestButton extends SuperiorPaginateButton {
 
     public IslandChestButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);

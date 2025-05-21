@@ -34,7 +34,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class CountsButton extends SuperiorButton implements PaginateButton {
+public class CountsButton extends SuperiorPaginateButton {
 
     private final Comparator<BlockCount> BLOCK_COUNT_COMPARATOR = (o1, o2) -> {
         Material firstMaterial = getMaterialFromKey(o1.getBlockKey());

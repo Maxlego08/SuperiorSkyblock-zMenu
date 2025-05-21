@@ -13,7 +13,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class CoopsButton extends SuperiorButton implements PaginateButton {
+public class CoopsButton extends SuperiorPaginateButton {
 
     public CoopsButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);

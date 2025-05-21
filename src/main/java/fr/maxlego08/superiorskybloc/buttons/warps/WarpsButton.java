@@ -10,19 +10,18 @@ import com.bgsoftware.superiorskyblock.core.menu.MenuActions;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import com.bgsoftware.superiorskyblock.island.privilege.IslandPrivileges;
 import fr.maxlego08.menu.api.MenuItemStack;
-import fr.maxlego08.menu.api.button.PaginateButton;
-import fr.maxlego08.menu.api.engine.ItemButton;
-import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.ItemButton;
 import fr.maxlego08.menu.api.engine.Pagination;
+import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.superiorskybloc.PlayerCache;
-import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import fr.maxlego08.superiorskybloc.buttons.SuperiorPaginateButton;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class WarpsButton extends SuperiorButton implements PaginateButton {
+public class WarpsButton extends SuperiorPaginateButton {
 
     private final MenuItemStack editItemStack;
 

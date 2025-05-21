@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-public class GlobalWarpsButton extends SuperiorButton implements PaginateButton {
+public class GlobalWarpsButton extends SuperiorPaginateButton {
 
     private final boolean visitorWarps;
 
