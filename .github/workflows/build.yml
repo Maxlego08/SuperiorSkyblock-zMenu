@@ -37,12 +37,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build -Darchive.classifier=DEV -Dgithub.sha=${{ steps.short_sha.outputs.GITHUB_SHA_SHORT }}
 
-      - name: Publish on GCHR
-        run: ./gradlew API:publish -Darchive.classifier=DEV -Dgithub.sha=${{ steps.short_sha.outputs.GITHUB_SHA_SHORT }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
-
       - name: Find SuperiorSkyblock-zMenu JAR
         id: find_jar
         run: |
