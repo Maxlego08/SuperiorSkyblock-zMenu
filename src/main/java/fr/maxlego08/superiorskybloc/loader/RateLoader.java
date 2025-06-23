@@ -14,11 +14,6 @@ public class RateLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return RateButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         Rating rating = Rating.valueOf(configuration.getString(path + "rate", Rating.UNKNOWN.name()).toUpperCase());
         return new RateButton(this.plugin, rating);

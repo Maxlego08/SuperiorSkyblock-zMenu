@@ -6,15 +6,15 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.SequentialListBuilder;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class IslandChestButton extends SuperiorButton implements PaginateButton {
+public class IslandChestButton extends SuperiorPaginateButton {
 
     public IslandChestButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);
@@ -26,7 +26,7 @@ public class IslandChestButton extends SuperiorButton implements PaginateButton 
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return requestObjects(player).size() != 0;
     }
 
@@ -36,7 +36,7 @@ public class IslandChestButton extends SuperiorButton implements PaginateButton 
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<IslandChest> pagination = new Pagination<>();
         List<IslandChest> islandChests = pagination.paginate(requestObjects(player), this.slots.size(), inventory.getPage());

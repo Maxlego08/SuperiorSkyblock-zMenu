@@ -2,13 +2,13 @@ package fr.maxlego08.superiorskybloc.buttons;
 
 import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
-import fr.maxlego08.menu.button.ZButton;
+import fr.maxlego08.menu.api.button.Button;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.ZMenuManager;
 import fr.maxlego08.superiorskybloc.ZMenusProvider;
 import org.bukkit.entity.Player;
 
-public abstract class SuperiorButton extends ZButton {
+public abstract class SuperiorButton extends Button {
 
     protected final SuperiorSkyblockPlugin plugin;
     protected final ZMenuManager menuManager;

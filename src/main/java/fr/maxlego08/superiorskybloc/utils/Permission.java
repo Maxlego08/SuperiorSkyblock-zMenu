@@ -1,7 +1,7 @@
 package fr.maxlego08.superiorskybloc.utils;
 
 import com.bgsoftware.superiorskyblock.api.island.IslandPrivilege;
-import fr.maxlego08.menu.MenuItemStack;
+import fr.maxlego08.menu.api.MenuItemStack;
 
 public class Permission {
 

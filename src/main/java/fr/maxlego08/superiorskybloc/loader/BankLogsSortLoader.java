@@ -13,11 +13,6 @@ public class BankLogsSortLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return BankLogsSortButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         String sort = configuration.getString(path + "sort");
         return new BankLogsSortButton(this.plugin, sort);

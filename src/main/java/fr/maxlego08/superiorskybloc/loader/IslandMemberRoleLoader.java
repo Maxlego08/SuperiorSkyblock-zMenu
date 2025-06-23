@@ -11,13 +11,9 @@ import fr.maxlego08.superiorskybloc.buttons.members.IslandMemberRoleButton;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class IslandMemberRoleLoader extends SuperiorButtonLoader {
+
     public IslandMemberRoleLoader(SuperiorSkyblockPlugin plugin) {
         super(plugin, "MEMBER_ROLE");
-    }
-
-    @Override
-    public Class<? extends Button> getButton() {
-        return IslandBiomeButton.class;
     }
 
     @Override

@@ -7,12 +7,11 @@ import com.bgsoftware.superiorskyblock.api.island.bank.BankTransaction;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
-import fr.maxlego08.menu.api.button.PaginateButton;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
-import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import fr.maxlego08.superiorskybloc.buttons.SuperiorPaginateButton;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -21,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-public class BankLogsButton extends SuperiorButton implements PaginateButton {
+public class BankLogsButton extends SuperiorPaginateButton {
 
     private static final UUID CONSOLE_UUID = new UUID(0, 0);
 
@@ -30,7 +29,7 @@ public class BankLogsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onInventoryOpen(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public void onInventoryOpen(Player player, InventoryEngine inventory, Placeholders placeholders) {
         super.onInventoryOpen(player, inventory, placeholders);
 
         PlayerCache playerCache = getCache(player);
@@ -43,7 +42,7 @@ public class BankLogsButton extends SuperiorButton implements PaginateButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<BankTransaction> pagination = new Pagination<>();
         List<BankTransaction> bankTransactions = pagination.paginate(this.getSortTransactions(player), this.slots.size(), inventory.getPage());

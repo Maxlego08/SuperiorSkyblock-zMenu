@@ -15,11 +15,6 @@ public class PlayerLanguageLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return PlayerLanguageButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
 
         String languageName = configuration.getString(path + "language", "en-US");
