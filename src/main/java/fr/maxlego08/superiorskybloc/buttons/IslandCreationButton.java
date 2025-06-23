@@ -8,7 +8,7 @@ import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import org.bukkit.Location;
 import org.bukkit.block.Biome;
@@ -36,7 +36,7 @@ public class IslandCreationButton extends SuperiorButton {
     }
 
     @Override
-    public void onClick(Player player, InventoryClickEvent event, InventoryDefault inventory, int slot, Placeholders placeholders) {
+    public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot, Placeholders placeholders) {
 
         super.onClick(player, event, inventory, slot, placeholders);
         PlayerCache playerCache = getCache(player);

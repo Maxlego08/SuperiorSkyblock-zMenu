@@ -1,6 +1,6 @@
 package fr.maxlego08.superiorskybloc.utils;
 
-import fr.maxlego08.menu.MenuItemStack;
+import fr.maxlego08.menu.api.MenuItemStack;
 
 import java.util.List;
 

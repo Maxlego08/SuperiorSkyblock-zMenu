@@ -7,13 +7,14 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.formatting.Formatters;
 import com.bgsoftware.superiorskyblock.core.itemstack.ItemSkulls;
 import com.bgsoftware.superiorskyblock.core.messages.Message;
-import fr.maxlego08.menu.MenuItemStack;
+import fr.maxlego08.menu.api.MenuItemStack;
 import fr.maxlego08.menu.api.utils.MetaUpdater;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.PlayerCache;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -42,7 +43,7 @@ public class IslandTopButton extends SuperiorButton {
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         if (this.slots.size() != this.positions.size()) {
             plugin.getLogger().severe("You must have the number of slots equal to the number of positions for the top-islands.yml inventory!");
@@ -63,7 +64,7 @@ public class IslandTopButton extends SuperiorButton {
         }
     }
 
-    private void onRenderIsland(Player player, InventoryDefault inventory, int position, Island island, int slot) {
+    private void onRenderIsland(Player player, InventoryEngine inventory, int position, Island island, int slot) {
 
         SuperiorPlayer inventoryViewer = getSuperiorPlayer(player);
         MetaUpdater updater = this.menuManager.getInventoryManager().getMeta();
@@ -115,7 +116,7 @@ public class IslandTopButton extends SuperiorButton {
                 }
             } else lore.add(line);
         }
-        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse).collect(Collectors.toList()), player);
+        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse).map(e -> PlaceholderAPI.setPlaceholders(player, e)).collect(Collectors.toList()), player);
 
         itemStack.setItemMeta(itemMeta);
         itemStack = ItemSkulls.getPlayerHead(itemStack, islandOwner.getTextureValue());

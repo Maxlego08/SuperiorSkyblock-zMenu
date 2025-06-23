@@ -7,13 +7,13 @@ import com.bgsoftware.superiorskyblock.api.island.PlayerRole;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.events.plugin.PluginEventsFactory;
 import com.bgsoftware.superiorskyblock.island.role.SPlayerRole;
-import fr.maxlego08.menu.MenuItemStack;
-import fr.maxlego08.menu.api.button.PaginateButton;
+import fr.maxlego08.menu.api.MenuItemStack;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.menu.api.utils.MetaUpdater;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
 import fr.maxlego08.superiorskybloc.utils.Permission;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class IslandPermissionButton extends SuperiorButton implements PaginateButton {
+public class IslandPermissionButton extends SuperiorPaginateButton {
 
     private final String noRolePermission;
     private final String exactRolePermission;
@@ -44,7 +44,7 @@ public class IslandPermissionButton extends SuperiorButton implements PaginateBu
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         SuperiorPlayer superiorPlayer = getSuperiorPlayer(player);
         Island island = superiorPlayer.getIsland();
@@ -84,7 +84,7 @@ public class IslandPermissionButton extends SuperiorButton implements PaginateBu
                 }
             }
 
-            updater.updateLore(itemMeta, strings, player);
+            updater.updateLore(itemMeta, PlaceholderAPI.setPlaceholders(player, strings), player);
             itemStack.setItemMeta(itemMeta);
 
             inventory.addItem(slot, itemStack).setClick(event -> {
@@ -98,7 +98,7 @@ public class IslandPermissionButton extends SuperiorButton implements PaginateBu
         }
     }
 
-    private void onRoleButtonClick(Island island, SuperiorPlayer clickedPlayer, InventoryClickEvent clickEvent, Permission permission, InventoryDefault inventoryDefault) {
+    private void onRoleButtonClick(Island island, SuperiorPlayer clickedPlayer, InventoryClickEvent clickEvent, Permission permission, InventoryEngine inventoryDefault) {
         IslandPrivilege islandPrivilege = permission.getIslandPrivilege();
 
         if (islandPrivilege == null) return;

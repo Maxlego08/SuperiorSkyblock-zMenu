@@ -18,25 +18,22 @@ public final class ZMenuModule extends PluginModule {
 
     @Override
     public void onEnable(SuperiorSkyblock superiorSkyblock) {
-        System.out.println("Oui je load bien le module zMenu !");
         SuperiorSkyblockPlugin plugin = (SuperiorSkyblockPlugin) Bukkit.getPluginManager().getPlugin("SuperiorSkyblock2");
-        System.out.println("Plugin : " + plugin);
         SuperiorSkyblockAPI.getProviders().setMenusProvider(this.menusProvider = new ZMenusProvider(plugin));
     }
 
     @Override
     public void onReload(SuperiorSkyblock superiorSkyblock) {
-        System.out.println("Oui je reload bien le module zMenu !");
+        menusProvider.getMenuManager().loadInventories();
     }
 
     @Override
     public void onDisable(SuperiorSkyblock superiorSkyblock) {
-        System.out.println("Oui je disable bien le module zMenu !");
     }
 
     @Override
     public Listener[] getModuleListeners(SuperiorSkyblock superiorSkyblock) {
-        return new Listener[0];
+        return new Listener[]{this.menusProvider.getMenuManager()};
     }
 
     @Override

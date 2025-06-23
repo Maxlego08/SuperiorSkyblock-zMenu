@@ -5,9 +5,10 @@ import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.itemstack.ItemSkulls;
 import fr.maxlego08.menu.api.button.PaginateButton;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskybloc.buttons.SuperiorButton;
+import fr.maxlego08.superiorskybloc.buttons.SuperiorPaginateButton;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
@@ -17,7 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.ToIntFunction;
 
-public class IslandMembersButton extends SuperiorButton implements PaginateButton {
+public class IslandMembersButton extends SuperiorPaginateButton {
 
     public IslandMembersButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);
@@ -29,7 +30,7 @@ public class IslandMembersButton extends SuperiorButton implements PaginateButto
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
         SuperiorPlayer superiorPlayer = getSuperiorPlayer(player);
         List<SuperiorPlayer> members = new ArrayList<>(superiorPlayer.getIsland().getIslandMembers(true));
         members.sort(Comparator.comparingInt((ToIntFunction<SuperiorPlayer>) value -> value.getPlayerRole().getWeight()).reversed());

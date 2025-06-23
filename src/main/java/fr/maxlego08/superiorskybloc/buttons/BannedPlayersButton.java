@@ -4,15 +4,15 @@ import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.itemstack.ItemSkulls;
 import fr.maxlego08.menu.api.button.PaginateButton;
+import fr.maxlego08.menu.api.engine.InventoryEngine;
+import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.menu.api.utils.Placeholders;
-import fr.maxlego08.menu.inventory.inventories.InventoryDefault;
-import fr.maxlego08.menu.zcore.utils.inventory.Pagination;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.List;
 
-public class BannedPlayersButton extends SuperiorButton implements PaginateButton {
+public class BannedPlayersButton extends SuperiorPaginateButton {
 
     public BannedPlayersButton(Plugin plugin) {
         super((SuperiorSkyblockPlugin) plugin);
@@ -24,7 +24,7 @@ public class BannedPlayersButton extends SuperiorButton implements PaginateButto
     }
 
     @Override
-    public boolean checkPermission(Player player, InventoryDefault inventory, Placeholders placeholders) {
+    public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
         return getPaginationSize(player) != 0;
     }
 
@@ -34,7 +34,7 @@ public class BannedPlayersButton extends SuperiorButton implements PaginateButto
     }
 
     @Override
-    public void onRender(Player player, InventoryDefault inventory) {
+    public void onRender(Player player, InventoryEngine inventory) {
 
         Pagination<SuperiorPlayer> pagination = new Pagination<>();
         List<SuperiorPlayer> bannedPlayers = pagination.paginate(getCache(player).getIsland().getBannedPlayers(), this.slots.size(), inventory.getPage());

@@ -15,11 +15,6 @@ public class BlockValueLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return BlockValueButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         String block = configuration.getString(path + "block", "STONE");
         Key blockKey = Keys.ofMaterialAndData(block);

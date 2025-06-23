@@ -14,11 +14,6 @@ public class IslandTopSortLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return IslandTopSortButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
 
         String sortingTypeString = configuration.getString(path + "sorting-type", "WORTH");

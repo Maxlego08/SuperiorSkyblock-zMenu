@@ -23,11 +23,6 @@ public class IslandCreationLoader extends SuperiorButtonLoader {
     }
 
     @Override
-    public Class<? extends Button> getButton() {
-        return IslandCreationButton.class;
-    }
-
-    @Override
     public Button load(YamlConfiguration configuration, String path, DefaultButtonValue defaultButtonValue) {
         ConfigurationSection itemSection = configuration.getConfigurationSection(path);
         if (itemSection == null) {

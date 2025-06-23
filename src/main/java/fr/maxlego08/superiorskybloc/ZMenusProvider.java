@@ -44,7 +44,6 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void initializeMenus() {
-        System.out.println("Oui je vais initialiser les interfaces !!");
         this.originalMenusProvider.initializeMenus();
         this.zMenuManager.registerButtons();
         this.zMenuManager.loadInventories();
