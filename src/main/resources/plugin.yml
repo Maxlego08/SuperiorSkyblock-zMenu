@@ -1,0 +1,6 @@
+name: SuperiorSkyblock-zMenu
+authors: [ Maxlego08 ]
+main: fr.maxlego08.superiorskyblock.FakePlugin
+description: Its not a plugin !!!
+version: ${version}
+api-version: 1.19
