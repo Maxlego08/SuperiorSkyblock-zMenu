@@ -18,13 +18,17 @@ repositories {
     maven(url = "https://repo.papermc.io/repository/maven-public/")
     maven(url = "https://oss.sonatype.org/content/groups/public/")
     maven(url = "https://repo.extendedclip.com/releases/")
+    maven {
+        name = "groupezReleases"
+        url = uri("https://repo.groupez.dev/releases")
+    }
 }
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
-    compileOnly(files("libs/SuperiorSkyblock2-2024.4-b445.jar"))
-    compileOnly(files("libs/zMenu-API-1.1.0.0.jar"))
     compileOnly("me.clip:placeholderapi:2.11.6")
+    compileOnly("fr.maxlego08.menu:zmenu-api:1.1.0.0")
+    compileOnly(files("libs/SuperiorSkyblock2-2025.1-b526.jar"))
 }
 
 tasks.compileJava {
