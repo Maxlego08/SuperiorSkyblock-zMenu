@@ -53,6 +53,7 @@ import fr.maxlego08.superiorskyblock.loader.IslandTopSortLoader;
 import fr.maxlego08.superiorskyblock.loader.PlayerLanguageLoader;
 import fr.maxlego08.superiorskyblock.loader.RateLoader;
 import fr.maxlego08.superiorskyblock.loader.UpgradeLoader;
+import fr.maxlego08.superiorskyblock.loader.WarpPrivacyLoader;
 import fr.maxlego08.superiorskyblock.loader.WarpsLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -183,6 +184,7 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new RateLoader(this.plugin));
         this.buttonManager.register(new UpgradeLoader(this.plugin));
         this.buttonManager.register(new WarpsLoader(this.plugin));
+        this.buttonManager.register(new WarpPrivacyLoader(this.plugin));
 
         this.buttonManager.register(new NoneLoader(this.plugin, IslandMembersButton.class, "SUPERIORSKYBLOCK_MEMBERS"));
         this.buttonManager.register(new NoneLoader(this.plugin, IslandMemberInfoButton.class, "SUPERIORSKYBLOCK_MEMBER_INFO"));
@@ -201,7 +203,6 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new NoneLoader(this.plugin, IslandChestButton.class, "SUPERIORSKYBLOCK_CHESTS"));
         this.buttonManager.register(new NoneLoader(this.plugin, UniqueVisitorsButton.class, "SUPERIORSKYBLOCK_UNIQUE_VISITORS"));
         this.buttonManager.register(new NoneLoader(this.plugin, VisitorsButton.class, "SUPERIORSKYBLOCK_VISITORS"));
-        this.buttonManager.register(new NoneLoader(this.plugin, WarpManagePrivacyButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_PRIVACY"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageLocationButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_LOCATION"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageRenameButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_RENAME"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageIconButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_ICON"));

@@ -25,13 +25,13 @@ public class UpgradeLoader extends SuperiorButtonLoader {
 
         Upgrade upgrade = plugin.getUpgrades().getUpgrade(upgradeName);
         if (upgrade == null) {
-            this.plugin.getLogger().severe("Upgrade " + upgradeName + " was not found !");
+            this.plugin.getLogger().severe("Upgrade " + upgradeName + " was not found for " + path);
             return null;
         }
 
         SUpgradeLevel upgradeLevel = (SUpgradeLevel) upgrade.getUpgradeLevel(level);
         if (upgradeLevel == null) {
-            this.plugin.getLogger().severe("Upgrade " + upgradeName + " with level " + level + "was not found !");
+            this.plugin.getLogger().severe("Upgrade " + upgradeName + " with level " + level + "was not found for " + path);
             return null;
         }
 

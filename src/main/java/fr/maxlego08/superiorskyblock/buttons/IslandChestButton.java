@@ -4,9 +4,9 @@ import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.island.IslandChest;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.bgsoftware.superiorskyblock.core.SequentialListBuilder;
-import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.menu.api.engine.Pagination;
+import fr.maxlego08.menu.api.utils.Placeholders;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -26,7 +26,7 @@ public class IslandChestButton extends SuperiorPaginateButton {
 
     @Override
     public boolean checkPermission(Player player, InventoryEngine inventory, Placeholders placeholders) {
-        return requestObjects(player).size() != 0;
+        return !requestObjects(player).isEmpty();
     }
 
     @Override
@@ -49,6 +49,7 @@ public class IslandChestButton extends SuperiorPaginateButton {
             Placeholders placeholders = new Placeholders();
             placeholders.register("index", String.valueOf(islandChest.getIndex()));
             placeholders.register("size", String.valueOf(islandChest.getRows()));
+            placeholders.register("capacity", String.valueOf(islandChest.getRows() * 9));
 
             inventory.addItem(slot, getItemStack().build(player, false, placeholders)).setClick(event -> islandChest.openChest(superiorPlayer));
         }
