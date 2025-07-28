@@ -9,7 +9,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 public class WarpPrivacyLoader extends SuperiorButtonLoader {
 
     public WarpPrivacyLoader(SuperiorSkyblockPlugin plugin) {
-        super(plugin, "SUPERIORSKYBLOCK_WARP_MANAGE_PRIVACY");
+        super(plugin, "WARP_MANAGE_PRIVACY");
     }
 
     @Override
