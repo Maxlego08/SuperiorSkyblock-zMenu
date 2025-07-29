@@ -25,6 +25,14 @@ public class WarpManagePrivacyButton extends SuperiorButton {
     }
 
     @Override
+    public void onInventoryOpen(Player player, InventoryEngine inventory, Placeholders placeholders) {
+        super.onInventoryOpen(player, inventory, placeholders);
+
+        IslandWarp islandWarp = getCache(player).getIslandWarp();
+        placeholders.register("name", islandWarp.getName() == null ? "" : islandWarp.getName());
+    }
+
+    @Override
     public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot, Placeholders placeholders) {
         super.onClick(player, event, inventory, slot, placeholders);
 
