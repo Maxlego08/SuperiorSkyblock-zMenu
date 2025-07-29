@@ -3,7 +3,7 @@ package fr.maxlego08.superiorskyblock.loader;
 import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import fr.maxlego08.menu.api.button.Button;
 import fr.maxlego08.menu.api.button.DefaultButtonValue;
-import fr.maxlego08.superiorskyblock.buttons.GlobalWarpsButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.GlobalWarpsButton;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class GlobalWarpsLoader extends SuperiorButtonLoader {

@@ -1,4 +1,4 @@
-package fr.maxlego08.superiorskyblock.buttons;
+package fr.maxlego08.superiorskyblock.buttons.warps;
 
 import com.bgsoftware.superiorskyblock.SuperiorSkyblockPlugin;
 import com.bgsoftware.superiorskyblock.api.island.Island;
@@ -9,6 +9,7 @@ import com.bgsoftware.superiorskyblock.island.top.SortingComparators;
 import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
 import fr.maxlego08.menu.api.engine.Pagination;
+import fr.maxlego08.superiorskyblock.buttons.SuperiorPaginateButton;
 import org.bukkit.entity.Player;
 
 import java.util.List;
