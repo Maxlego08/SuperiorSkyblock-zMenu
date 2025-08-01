@@ -36,7 +36,6 @@ import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconNameButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconTypeButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageIconButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageLocationButton;
-import fr.maxlego08.superiorskyblock.buttons.warps.WarpManagePrivacyButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageRenameButton;
 import fr.maxlego08.superiorskyblock.loader.BankActionLoader;
 import fr.maxlego08.superiorskyblock.loader.BankLogsSortLoader;
@@ -66,6 +65,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -237,8 +237,8 @@ public class ZMenuManager implements Listener {
                 "island-chests", "unique-visitors");
 
         inventories.forEach(inventoryName -> {
-            if (!new File(plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
-                this.plugin.saveResource("inventories/" + inventoryName + ".yml", false);
+            if (!new File(this.plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
+                this.saveResource("inventories/" + inventoryName + ".yml", new File(this.plugin.getDataFolder(), "inventories/" + inventoryName + ".yml"));
             }
         });
 
@@ -253,6 +253,19 @@ public class ZMenuManager implements Listener {
                 exception.printStackTrace();
             }
         });
+    }
+
+    private void saveResource(String resourcePath, File outputFile) {
+        try (InputStream in = ZMenuModule.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            System.out.println("IN " + in);
+            if (in == null) {
+                throw new IOException("Ressource introuvable : " + resourcePath);
+            }
+            var r = Files.copy(in, outputFile.toPath());
+            System.out.println(" Result ! " + r);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**

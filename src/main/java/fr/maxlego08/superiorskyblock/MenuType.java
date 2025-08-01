@@ -32,6 +32,7 @@ public enum MenuType {
     VISITORS,
     WARP_ICON_EDIT,
     WARP_MANAGE,
-    WARPS
+    WARPS,
+    CONFIRM_TRANSFER
 
 }
