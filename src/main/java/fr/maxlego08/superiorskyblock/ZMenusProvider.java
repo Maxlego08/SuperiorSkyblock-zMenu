@@ -112,6 +112,17 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
+    public void openConfirmTransfer(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, SuperiorPlayer newOwner) {
+        Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
+        Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
+        Preconditions.checkNotNull(newOwner, "newOwner parameter cannot be null.");
+        this.zMenuManager.openInventory(targetPlayer, "confirm-transfer", cache -> {
+            cache.setTargetPlayer(newOwner);
+            cache.setIsland(targetIsland);
+        });
+    }
+
+    @Override
     public void openControlPanel(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");

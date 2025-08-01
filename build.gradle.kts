@@ -28,7 +28,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
     compileOnly("me.clip:placeholderapi:2.11.6")
     compileOnly("fr.maxlego08.menu:zmenu-api:1.1.0.0")
-    compileOnly(files("libs/SuperiorSkyblock2-2025.1-b526.jar"))
+    compileOnly(files("libs/SuperiorSkyblock2-2025.1-b555.jar"))
 }
 
 tasks.compileJava {

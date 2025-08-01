@@ -24,6 +24,7 @@ import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmBan;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmDisband;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmKick;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmLeave;
+import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmTransfer;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberBanButton;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberInfoButton;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberKickButton;
@@ -194,6 +195,7 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmDisband.class, "SUPERIORSKYBLOCK_CONFIRM_DISBAND"));
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmKick.class, "SUPERIORSKYBLOCK_CONFIRM_KICK"));
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmLeave.class, "SUPERIORSKYBLOCK_CONFIRM_LEAVE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmTransfer.class, "SUPERIORSKYBLOCK_CONFIRM_TRANSFER"));
         this.buttonManager.register(new NoneLoader(this.plugin, TargetShowButton.class, "SUPERIORSKYBLOCK_TARGET_SHOW"));
         this.buttonManager.register(new NoneLoader(this.plugin, BankLogsButton.class, "SUPERIORSKYBLOCK_BANK_LOGS"));
         this.buttonManager.register(new NoneLoader(this.plugin, BannedPlayersButton.class, "SUPERIORSKYBLOCK_BANNED_PLAYERS"));
@@ -229,7 +231,7 @@ public class ZMenuManager implements Listener {
 
         // Save inventories files
         List<String> inventories = Arrays.asList("island-creation", "settings", "biomes", "members", "member-manage", "member-role", //
-                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", //
+                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", "confirm-transfer", //
                 "confirm-leave", "warps", "player-language", "values", "bank-logs", "banned-players", "coops", "counts", "visitors", //
                 "upgrades", "warp-manage", "warp-icon-edit", "global-warps", "island-bank", "island-ratings", "island-rate", //
                 "island-chests", "unique-visitors");
