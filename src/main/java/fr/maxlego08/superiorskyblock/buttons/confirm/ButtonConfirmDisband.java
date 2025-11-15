@@ -35,9 +35,9 @@ public class ButtonConfirmDisband extends SuperiorButton {
 
             Message.DISBANDED_ISLAND.send(superiorPlayer);
 
-            if (BuiltinModules.BANK.disbandRefund > 0) {
+            /*if (BuiltinModules.BANK.disbandRefund > 0) {
                 Message.DISBAND_ISLAND_BALANCE_REFUND.send(island.getOwner(), Formatters.NUMBER_FORMATTER.format(island.getIslandBank().getBalance().multiply(BigDecimal.valueOf(BuiltinModules.BANK.disbandRefund))));
-            }
+            }*/
 
             superiorPlayer.setDisbands(superiorPlayer.getDisbands() - 1);
 
