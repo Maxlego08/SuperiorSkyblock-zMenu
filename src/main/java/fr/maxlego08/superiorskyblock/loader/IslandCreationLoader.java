@@ -8,6 +8,8 @@ import com.bgsoftware.superiorskyblock.core.serialization.Serializers;
 import fr.maxlego08.menu.api.button.Button;
 import fr.maxlego08.menu.api.button.DefaultButtonValue;
 import fr.maxlego08.superiorskyblock.buttons.IslandCreationButton;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.block.Biome;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -46,7 +48,8 @@ public class IslandCreationLoader extends SuperiorButtonLoader {
 
         // Load other configurations
         boolean isOffset = itemSection.getBoolean("offset", false);
-        BlockOffset spawnOffset = Optional.ofNullable(itemSection.getString("spawn-offset")).map(Serializers.OFFSET_SPACED_SERIALIZER::deserialize).orElse(null);
+        BlockOffset spawnOffset = Optional.ofNullable(itemSection.getString("spawn-offset"))
+                .map(Serializers.OFFSET_SPACED_SERIALIZER::deserialize).orElse(null);
 
         return new IslandCreationButton(plugin, schematic, biome, bonusWorth, bonusLevel, isOffset, spawnOffset);
     }
@@ -54,7 +57,12 @@ public class IslandCreationLoader extends SuperiorButtonLoader {
     // Method to get Biome with error handling
     private Biome getBiome(String biomeName, String path) {
         try {
-            return Biome.valueOf(biomeName.toUpperCase(Locale.ENGLISH));
+            Biome biome = Registry.BIOME.get(NamespacedKey.minecraft(biomeName.toLowerCase(Locale.ENGLISH)));
+            if (biome != null) {
+                return biome;
+            }
+            Log.warnFromFile("island-creation.yml", "Invalid biome name for item ", path, ": ", biomeName);
+            return Biome.PLAINS; // Default biome if invalid
         } catch (IllegalArgumentException e) {
             Log.warnFromFile("island-creation.yml", "Invalid biome name for item ", path, ": ", biomeName);
             return Biome.PLAINS; // Default biome if invalid

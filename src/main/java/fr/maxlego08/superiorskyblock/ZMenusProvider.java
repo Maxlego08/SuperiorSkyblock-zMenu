@@ -77,7 +77,8 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
-    public void openConfirmBan(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, SuperiorPlayer bannedPlayer) {
+    public void openConfirmBan(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland,
+            SuperiorPlayer bannedPlayer) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
         Preconditions.checkNotNull(bannedPlayer, "bannedPlayer parameter cannot be null.");
@@ -95,7 +96,8 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
-    public void openConfirmKick(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, SuperiorPlayer kickedPlayer) {
+    public void openConfirmKick(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland,
+            SuperiorPlayer kickedPlayer) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
         Preconditions.checkNotNull(kickedPlayer, "kickedPlayer parameter cannot be null.");
@@ -244,7 +246,8 @@ public class ZMenusProvider implements MenusProvider {
     public void openMemberManage(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, SuperiorPlayer islandMember) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(islandMember, "islandMember parameter cannot be null.");
-        this.zMenuManager.openInventory(targetPlayer, "member-manage", playerCache -> playerCache.setTargetPlayer(islandMember));
+        this.zMenuManager.openInventory(targetPlayer, "member-manage",
+                playerCache -> playerCache.setTargetPlayer(islandMember));
     }
 
     @Override
@@ -256,7 +259,8 @@ public class ZMenusProvider implements MenusProvider {
     public void openMemberRole(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, SuperiorPlayer islandMember) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(islandMember, "islandMember parameter cannot be null.");
-        this.zMenuManager.openInventory(targetPlayer, "member-role", playerCache -> playerCache.setTargetPlayer(islandMember));
+        this.zMenuManager.openInventory(targetPlayer, "member-role",
+                playerCache -> playerCache.setTargetPlayer(islandMember));
     }
 
     @Override
@@ -284,7 +288,8 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
-    public void openMissionsCategory(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, MissionCategory missionCategory) {
+    public void openMissionsCategory(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu,
+            MissionCategory missionCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(missionCategory, "missionCategory parameter cannot be null.");
         this.zMenuManager.openInventory(targetPlayer, "missions-category", cache -> cache.setMissionCategory(missionCategory));
@@ -296,7 +301,8 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
-    public void openPermissions(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, SuperiorPlayer permissiblePlayer) {
+    public void openPermissions(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland,
+            SuperiorPlayer permissiblePlayer) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
         Preconditions.checkNotNull(permissiblePlayer, "permissiblePlayer parameter cannot be null.");
@@ -304,7 +310,8 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     @Override
-    public void openPermissions(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, PlayerRole permissibleRole) {
+    public void openPermissions(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland,
+            PlayerRole permissibleRole) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
         Preconditions.checkNotNull(permissibleRole, "permissibleRole parameter cannot be null.");
@@ -318,7 +325,8 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void refreshPermissions(Island island, SuperiorPlayer permissiblePlayer) {
-        refreshInventories(MenuType.COUNTS, cache -> cache.getIsland() == island && cache.getTargetPlayer() == permissiblePlayer);
+        refreshInventories(MenuType.COUNTS,
+                cache -> cache.getIsland() == island && cache.getTargetPlayer() == permissiblePlayer);
     }
 
     @Override
@@ -328,9 +336,12 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void updatePermission(IslandPrivilege islandPrivilege) {
-        // The default implementation does not care if the island privilege is valid for showing the island
-        // privileges in the menu. If the island privilege is not valid at the time of opening the menu, it
-        // will show it as it was disabled. This is the responsibility of the server owners to properly
+        // The default implementation does not care if the island privilege is valid for
+        // showing the island
+        // privileges in the menu. If the island privilege is not valid at the time of
+        // opening the menu, it
+        // will show it as it was disabled. This is the responsibility of the server
+        // owners to properly
         // configure the menu.
     }
 
@@ -354,9 +365,12 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void updateSettings(IslandFlag islandFlag) {
-        // The default implementation does not care if the island flag is valid for showing the island flags
-        // in the menu. If the island flag is not valid at the time of opening the menu, it will show it as
-        // it was disabled. This is the responsibility of the server owners to properly configure the menu.
+        // The default implementation does not care if the island flag is valid for
+        // showing the island flags
+        // in the menu. If the island flag is not valid at the time of opening the menu,
+        // it will show it as
+        // it was disabled. This is the responsibility of the server owners to properly
+        // configure the menu.
     }
 
     @Override
@@ -434,23 +448,25 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void refreshWarpCategories(Island island) {
-        // TODO
+        refreshInventories(MenuType.WARP_CATEGORIES, cache -> cache.getIsland() == island);
     }
 
     @Override
     public void destroyWarpCategories(Island island) {
-        // TODO
+        destroyInventories(MenuType.WARP_CATEGORIES, cache -> cache.getIsland() == island);
     }
 
     @Override
-    public void openWarpCategoryIconEdit(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, WarpCategory targetCategory) {
+    public void openWarpCategoryIconEdit(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu,
+            WarpCategory targetCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetCategory, "targetCategory parameter cannot be null.");
         this.zMenuManager.openInventory(targetPlayer, "warp-category-icon-edit", cache -> cache.setWarpCategory(targetCategory));
     }
 
     @Override
-    public void openWarpCategoryManage(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, WarpCategory targetCategory) {
+    public void openWarpCategoryManage(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu,
+            WarpCategory targetCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetCategory, "targetCategory parameter cannot be null.");
         this.zMenuManager.openInventory(targetPlayer, "warp-category-manage", cache -> cache.setWarpCategory(targetCategory));
@@ -458,7 +474,7 @@ public class ZMenusProvider implements MenusProvider {
 
     @Override
     public void refreshWarpCategoryManage(WarpCategory warpCategory) {
-        // TODO
+        refreshInventories(MenuType.WARP_CATEGORY_MANAGE, cache -> cache.getWarpCategory() == warpCategory);
     }
 
     @Override
