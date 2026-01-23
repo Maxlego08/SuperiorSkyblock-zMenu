@@ -29,8 +29,7 @@ public class IslandTopButton extends SuperiorButton {
     private final MenuItemStack menuItemStackNoIsland;
     private final List<Integer> positions;
 
-    public IslandTopButton(SuperiorSkyblockPlugin plugin, MenuItemStack menuItemStackIsland,
-            MenuItemStack menuItemStackNoIsland, List<Integer> positions) {
+    public IslandTopButton(SuperiorSkyblockPlugin plugin, MenuItemStack menuItemStackIsland, MenuItemStack menuItemStackNoIsland, List<Integer> positions) {
         super(plugin);
         this.menuItemStackIsland = menuItemStackIsland;
         this.menuItemStackNoIsland = menuItemStackNoIsland;
@@ -46,8 +45,7 @@ public class IslandTopButton extends SuperiorButton {
     public void onRender(Player player, InventoryEngine inventory) {
 
         if (this.slots.size() != this.positions.size()) {
-            plugin.getLogger().severe(
-                    "You must have the number of slots equal to the number of positions for the top-islands.yml inventory!");
+            plugin.getLogger().severe("You must have the number of slots equal to the number of positions for the top-islands.yml inventory!");
             return;
         }
 
@@ -88,17 +86,12 @@ public class IslandTopButton extends SuperiorButton {
         placeholders.register("island-name", islandName);
         placeholders.register("island-level", Formatters.NUMBER_FORMATTER.format(island.getIslandLevel()));
         placeholders.register("island-worth", Formatters.NUMBER_FORMATTER.format(island.getWorth()));
-        placeholders.register("island-level-formatted",
-                Formatters.FANCY_NUMBER_FORMATTER.format(island.getIslandLevel(), inventoryViewer.getUserLocale()));
-        placeholders.register("island-worth-formatted",
-                Formatters.FANCY_NUMBER_FORMATTER.format(island.getWorth(), inventoryViewer.getUserLocale()));
-        placeholders.register("island-total-rating-formatted",
-                Formatters.NUMBER_FORMATTER.format(island.getTotalRating()));
-        placeholders.register("island-total-rating",
-                Formatters.RATING_FORMATTER.format(island.getTotalRating(), inventoryViewer.getUserLocale()));
+        placeholders.register("island-level-formatted", Formatters.FANCY_NUMBER_FORMATTER.format(island.getIslandLevel(), inventoryViewer.getUserLocale()));
+        placeholders.register("island-worth-formatted", Formatters.FANCY_NUMBER_FORMATTER.format(island.getWorth(), inventoryViewer.getUserLocale()));
+        placeholders.register("island-total-rating-formatted", Formatters.NUMBER_FORMATTER.format(island.getTotalRating()));
+        placeholders.register("island-total-rating", Formatters.RATING_FORMATTER.format(island.getTotalRating(), inventoryViewer.getUserLocale()));
         placeholders.register("island-rating-amount", Formatters.NUMBER_FORMATTER.format(island.getRatingAmount()));
-        placeholders.register("island-players",
-                Formatters.NUMBER_FORMATTER.format(island.getAllPlayersInside().size()));
+        placeholders.register("island-players", Formatters.NUMBER_FORMATTER.format(island.getAllPlayersInside().size()));
 
         ItemStack itemStack = this.menuItemStackIsland.build(player, false, placeholders);
         ItemMeta itemMeta = itemStack.getItemMeta();

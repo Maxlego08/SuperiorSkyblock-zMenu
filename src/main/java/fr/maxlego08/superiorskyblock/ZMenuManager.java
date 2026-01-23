@@ -195,73 +195,39 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new WarpsLoader(this.plugin));
 
         this.buttonManager.register(new NoneLoader(this.plugin, IslandMembersButton.class, "SUPERIORSKYBLOCK_MEMBERS"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, IslandMemberInfoButton.class, "SUPERIORSKYBLOCK_MEMBER_INFO"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, IslandMemberBanButton.class, "SUPERIORSKYBLOCK_MEMBER_BAN"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, IslandMemberKickButton.class, "SUPERIORSKYBLOCK_MEMBER_KICK"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, ButtonConfirmBan.class, "SUPERIORSKYBLOCK_CONFIRM_BAN"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, ButtonConfirmDisband.class, "SUPERIORSKYBLOCK_CONFIRM_DISBAND"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, ButtonConfirmKick.class, "SUPERIORSKYBLOCK_CONFIRM_KICK"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, ButtonConfirmLeave.class, "SUPERIORSKYBLOCK_CONFIRM_LEAVE"));
-        this.buttonManager
-                .register(
-                        new NoneLoader(this.plugin, ButtonConfirmTransfer.class, "SUPERIORSKYBLOCK_CONFIRM_TRANSFER"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, TargetShowButton.class, "SUPERIORSKYBLOCK_TARGET_SHOW"));
+        this.buttonManager.register(new NoneLoader(this.plugin, IslandMemberInfoButton.class, "SUPERIORSKYBLOCK_MEMBER_INFO"));
+        this.buttonManager.register(new NoneLoader(this.plugin, IslandMemberBanButton.class, "SUPERIORSKYBLOCK_MEMBER_BAN"));
+        this.buttonManager.register(new NoneLoader(this.plugin, IslandMemberKickButton.class, "SUPERIORSKYBLOCK_MEMBER_KICK"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmBan.class, "SUPERIORSKYBLOCK_CONFIRM_BAN"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmDisband.class, "SUPERIORSKYBLOCK_CONFIRM_DISBAND"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmKick.class, "SUPERIORSKYBLOCK_CONFIRM_KICK"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmLeave.class, "SUPERIORSKYBLOCK_CONFIRM_LEAVE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmTransfer.class, "SUPERIORSKYBLOCK_CONFIRM_TRANSFER"));
+        this.buttonManager.register(new NoneLoader(this.plugin, TargetShowButton.class, "SUPERIORSKYBLOCK_TARGET_SHOW"));
         this.buttonManager.register(new NoneLoader(this.plugin, BankLogsButton.class, "SUPERIORSKYBLOCK_BANK_LOGS"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, BannedPlayersButton.class, "SUPERIORSKYBLOCK_BANNED_PLAYERS"));
+        this.buttonManager.register(new NoneLoader(this.plugin, BannedPlayersButton.class, "SUPERIORSKYBLOCK_BANNED_PLAYERS"));
         this.buttonManager.register(new NoneLoader(this.plugin, CoopsButton.class, "SUPERIORSKYBLOCK_COOPS"));
         this.buttonManager.register(new NoneLoader(this.plugin, CountsButton.class, "SUPERIORSKYBLOCK_COUNTS"));
         this.buttonManager.register(new NoneLoader(this.plugin, RatingsButton.class, "SUPERIORSKYBLOCK_RATINGS"));
         this.buttonManager.register(new NoneLoader(this.plugin, IslandChestButton.class, "SUPERIORSKYBLOCK_CHESTS"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, UniqueVisitorsButton.class, "SUPERIORSKYBLOCK_UNIQUE_VISITORS"));
+        this.buttonManager.register(new NoneLoader(this.plugin, UniqueVisitorsButton.class, "SUPERIORSKYBLOCK_UNIQUE_VISITORS"));
         this.buttonManager.register(new NoneLoader(this.plugin, VisitorsButton.class, "SUPERIORSKYBLOCK_VISITORS"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpManagePrivacyButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_PRIVACY"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpManageLocationButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_LOCATION"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpManageRenameButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_RENAME"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, WarpManageIconButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_ICON"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpIconConfirmButton.class, "SUPERIORSKYBLOCK_WARP_ICON_CONFIRM"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, WarpIconNameButton.class, "SUPERIORSKYBLOCK_WARP_ICON_NAME"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, WarpIconLoreButton.class, "SUPERIORSKYBLOCK_WARP_ICON_LORE"));
-        this.buttonManager
-                .register(new NoneLoader(this.plugin, WarpIconTypeButton.class, "SUPERIORSKYBLOCK_WARP_ICON_TYPE"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpIconDisplayButton.class, "SUPERIORSKYBLOCK_WARP_ICON_DISPLAY"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoriesButton.class, "SUPERIORSKYBLOCK_WARP_CATEGORIES"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryIconConfirmButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_CONFIRM"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryIconLoreButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_LORE"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryIconNameButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_NAME"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryIconTypeButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_TYPE"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryManageIconButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_ICON"));
-        this.buttonManager.register(
-                new NoneLoader(this.plugin, WarpCategoryManageRenameButton.class,
-                        "SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_RENAME"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpManagePrivacyButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_PRIVACY"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpManageLocationButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_LOCATION"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpManageRenameButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_RENAME"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpManageIconButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_ICON"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpIconConfirmButton.class, "SUPERIORSKYBLOCK_WARP_ICON_CONFIRM"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpIconNameButton.class, "SUPERIORSKYBLOCK_WARP_ICON_NAME"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpIconLoreButton.class, "SUPERIORSKYBLOCK_WARP_ICON_LORE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpIconTypeButton.class, "SUPERIORSKYBLOCK_WARP_ICON_TYPE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpIconDisplayButton.class, "SUPERIORSKYBLOCK_WARP_ICON_DISPLAY"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoriesButton.class, "SUPERIORSKYBLOCK_WARP_CATEGORIES"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconConfirmButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_CONFIRM"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconLoreButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_LORE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconNameButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_NAME"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconTypeButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_TYPE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryManageIconButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_ICON"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryManageRenameButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_RENAME"));
     }
 
     /**
@@ -281,17 +247,11 @@ public class ZMenuManager implements Listener {
         }
 
         // Save inventories files
-        List<String> inventories = Arrays.asList("island-creation", "settings", "biomes", "members", "member-manage",
-                "member-role", //
-                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband",
-                "confirm-kick", //
-                "confirm-leave", "confirm-transfer", "warps", "player-language", "values", "bank-logs",
-                "banned-players", "coops", "counts",
-                "visitors", //
-                "upgrades", "warp-manage", "warp-icon-edit", "global-warps", "island-bank", "island-ratings",
-                "island-rate", //
-                "island-chests", "unique-visitors", "warp-categories", "warp-category-manage",
-                "warp-category-icon-edit");
+        List<String> inventories = Arrays.asList("island-creation", "settings", "biomes", "members", "member-manage", "member-role", //
+                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", //
+                "confirm-leave", "warps", "player-language", "values", "bank-logs", "banned-players", "coops", "counts", "visitors", //
+                "upgrades", "warp-manage", "warp-icon-edit", "global-warps", "island-bank", "island-ratings", "island-rate", //
+                "island-chests", "unique-visitors", "warp-categories", "warp-category-manage", "warp-category-icon-edit");
 
         inventories.forEach(inventoryName -> {
             if (!new File(plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
@@ -323,8 +283,7 @@ public class ZMenuManager implements Listener {
      */
     private void files(File folder, Consumer<File> consumer) {
         try (Stream<Path> s = Files.walk(Paths.get(folder.getPath()))) {
-            s.skip(1).map(Path::toFile).filter(File::isFile).filter(e -> e.getName().endsWith(".yml"))
-                    .forEach(consumer);
+            s.skip(1).map(Path::toFile).filter(File::isFile).filter(e -> e.getName().endsWith(".yml")).forEach(consumer);
         } catch (IOException exception) {
             exception.printStackTrace();
         }
