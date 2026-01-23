@@ -37,6 +37,5 @@ public enum MenuType {
     WARP_ICON_EDIT,
     WARP_MANAGE,
     WARPS,
-    CONFIRM_TRANSFER
 
 }
