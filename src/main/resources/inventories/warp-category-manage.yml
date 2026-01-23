@@ -1,0 +1,23 @@
+name: '&8Manage Category: %name%'
+size: 36
+
+items:
+  rename:
+    slot: 11
+    type: SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_RENAME
+    item:
+      material: BOOK
+      name: '&6Rename Category'
+      lore:
+        - '&f '
+        - '&f '
+        - '&7&o(( &f&oClick &7&oto rename the category. ))'
+  update:
+    type: SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_ICON
+    slot: 15
+    item:
+      material: '%material%'
+      name: '&6Edit Icon'
+      lore:
+        - '&f '
+        - '&7&o(( &f&oClick &7&oto edit the icon. ))'
