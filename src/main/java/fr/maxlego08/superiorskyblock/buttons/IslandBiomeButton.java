@@ -35,7 +35,8 @@ public class IslandBiomeButton extends SuperiorButton {
         SuperiorPlayer superiorPlayer = getSuperiorPlayer(player);
         Island island = superiorPlayer.getIsland();
 
-        if (island == null || island.getBiome() != this.biome) return itemStack;
+        if (island == null || island.getBiome() != this.biome)
+            return itemStack;
 
         if (shouldCurrentBiomeGlow) {
             ItemMeta itemMeta = itemStack.getItemMeta();
@@ -45,20 +46,23 @@ public class IslandBiomeButton extends SuperiorButton {
     }
 
     @Override
-    public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot, Placeholders placeholders) {
+    public void onClick(Player player, InventoryClickEvent event, InventoryEngine inventory, int slot,
+            Placeholders placeholders) {
         super.onClick(player, event, inventory, slot, placeholders);
 
         SuperiorPlayer inventoryViewer = getSuperiorPlayer(player);
         Island island = inventoryViewer.getIsland();
 
-        PluginEvent<PluginEventArgs.IslandBiomeChange> biomeChangeEvent = PluginEventsFactory.callIslandBiomeChangeEvent(island, inventoryViewer, this.biome);
+        PluginEvent<PluginEventArgs.IslandBiomeChange> biomeChangeEvent = PluginEventsFactory
+                .callIslandBiomeChangeEvent(island, inventoryViewer, this.biome);
 
-        if (biomeChangeEvent.isCancelled()) return;
+        if (biomeChangeEvent.isCancelled())
+            return;
 
         Biome biome = biomeChangeEvent.getArgs().biome;
 
         island.setBiome(biome);
-        Message.CHANGED_BIOME.send(inventoryViewer, biome.name().toLowerCase(Locale.ENGLISH));
+        Message.CHANGED_BIOME.send(inventoryViewer, biome.getKey().getKey().toLowerCase(Locale.ENGLISH));
 
         player.closeInventory();
     }

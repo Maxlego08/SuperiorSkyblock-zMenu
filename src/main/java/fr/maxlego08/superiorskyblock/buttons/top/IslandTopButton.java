@@ -11,7 +11,6 @@ import fr.maxlego08.menu.api.MenuItemStack;
 import fr.maxlego08.menu.api.utils.MetaUpdater;
 import fr.maxlego08.menu.api.utils.Placeholders;
 import fr.maxlego08.menu.api.engine.InventoryEngine;
-import fr.maxlego08.menu.api.engine.Pagination;
 import fr.maxlego08.superiorskyblock.PlayerCache;
 import fr.maxlego08.superiorskyblock.buttons.SuperiorButton;
 import me.clip.placeholderapi.PlaceholderAPI;
@@ -52,13 +51,14 @@ public class IslandTopButton extends SuperiorButton {
 
         PlayerCache playerCache = getCache(player);
         List<Island> islands = plugin.getGrid().getIslands(playerCache.getSortingType());
-        Pagination<Island> islandPagination = new Pagination<>();
-        islands = islandPagination.paginate(islands, this.slots.size(), inventory.getPage());
+        int pageOffset = (inventory.getPage() - 1) * this.positions.size();
 
         for (int i = 0; i != this.slots.size(); i++) {
             int slot = this.slots.get(i);
-            int position = this.positions.get(i) + ((inventory.getPage() - 1) * this.positions.size());
-            Island island = i < islands.size() ? islands.get(i) : null;
+            int position = this.positions.get(i) + pageOffset;
+            // Fetch island based on the position config (position - 1 for 0-indexed list)
+            int islandIndex = this.positions.get(i) - 1 + pageOffset;
+            Island island = islandIndex >= 0 && islandIndex < islands.size() ? islands.get(islandIndex) : null;
 
             onRenderIsland(player, inventory, position, island, slot);
         }
@@ -78,7 +78,11 @@ public class IslandTopButton extends SuperiorButton {
         }
 
         SuperiorPlayer islandOwner = island.getOwner();
-        String islandName = !plugin.getSettings().getIslandNames().isIslandTop() || island.getName().isEmpty() ? islandOwner.getName() : plugin.getSettings().getIslandNames().isColorSupport() ? Formatters.COLOR_FORMATTER.format(island.getName()) : island.getName();
+        String islandName = !plugin.getSettings().getIslandNames().isIslandTop() || island.getName().isEmpty()
+                ? islandOwner.getName()
+                : plugin.getSettings().getIslandNames().isColorSupport()
+                        ? Formatters.COLOR_FORMATTER.format(island.getName())
+                        : island.getName();
         placeholders.register("island-name", islandName);
         placeholders.register("island-level", Formatters.NUMBER_FORMATTER.format(island.getIslandLevel()));
         placeholders.register("island-worth", Formatters.NUMBER_FORMATTER.format(island.getWorth()));
@@ -95,7 +99,8 @@ public class IslandTopButton extends SuperiorButton {
         List<String> lore = new ArrayList<>();
         for (String line : this.menuItemStackIsland.getLore()) {
             if (line.contains("%members%")) {
-                List<SuperiorPlayer> members = new LinkedList<>(island.getIslandMembers(plugin.getSettings().isIslandTopIncludeLeader()));
+                List<SuperiorPlayer> members = new LinkedList<>(
+                        island.getIslandMembers(plugin.getSettings().isIslandTopIncludeLeader()));
                 String memberFormat = line.replace("%members%", "");
                 if (members.size() == 0) {
                     lore.add(memberFormat.replace("%member-name%", "None"));
@@ -105,7 +110,9 @@ public class IslandTopButton extends SuperiorButton {
                     }
 
                     members.forEach(member -> {
-                        String onlineMessage = member.isOnline() ? Message.ISLAND_TOP_STATUS_ONLINE.getMessage(inventoryViewer.getUserLocale()) : Message.ISLAND_TOP_STATUS_OFFLINE.getMessage(inventoryViewer.getUserLocale());
+                        String onlineMessage = member.isOnline()
+                                ? Message.ISLAND_TOP_STATUS_ONLINE.getMessage(inventoryViewer.getUserLocale())
+                                : Message.ISLAND_TOP_STATUS_OFFLINE.getMessage(inventoryViewer.getUserLocale());
                         Placeholders memberPlaceholders = new Placeholders();
                         memberPlaceholders.register("member-name", member.getName());
                         memberPlaceholders.register("online", onlineMessage);
@@ -114,9 +121,11 @@ public class IslandTopButton extends SuperiorButton {
                         lore.add(memberPlaceholders.parse(memberFormat));
                     });
                 }
-            } else lore.add(line);
+            } else
+                lore.add(line);
         }
-        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse).map(e -> PlaceholderAPI.setPlaceholders(player, e)).collect(Collectors.toList()), player);
+        updater.updateLore(itemMeta, lore.stream().map(placeholders::parse)
+                .map(e -> PlaceholderAPI.setPlaceholders(player, e)).collect(Collectors.toList()), player);
 
         itemStack.setItemMeta(itemMeta);
         itemStack = ItemSkulls.getPlayerHead(itemStack, islandOwner.getTextureValue());

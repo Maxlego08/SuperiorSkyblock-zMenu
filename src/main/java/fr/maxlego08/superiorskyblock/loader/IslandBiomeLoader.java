@@ -7,6 +7,8 @@ import fr.maxlego08.menu.api.button.DefaultButtonValue;
 import fr.maxlego08.superiorskyblock.buttons.IslandBiomeButton;
 import org.bukkit.block.Biome;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 
 import java.util.Locale;
 
@@ -21,9 +23,13 @@ public class IslandBiomeLoader extends SuperiorButtonLoader {
         boolean shouldCurrentBiomeGlow = configuration.getBoolean("current-biome-glow", false);
         Biome biome = Biome.PLAINS;
 
-        String biomeName = configuration.getString(path + "biome", Biome.PLAINS.name()).toUpperCase(Locale.ENGLISH);
+        String biomeName = configuration.getString(path + "biome", "plains").toLowerCase(Locale.ENGLISH);
         try {
-            biome = Biome.valueOf(biomeName);
+            biome = Registry.BIOME.get(NamespacedKey.minecraft(biomeName));
+            if (biome == null) {
+                Log.warnFromFile("biomes.yml", "Biome '", biomeName, "' is not valid, skipping...");
+                biome = Biome.PLAINS;
+            }
         } catch (IllegalArgumentException error) {
             Log.warnFromFile("biomes.yml", "Biome '", biomeName, "' is not valid, skipping...");
         }

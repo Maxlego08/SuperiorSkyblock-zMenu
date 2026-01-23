@@ -1,0 +1,37 @@
+name: '&8Warp Categories'
+size: 36
+
+items:
+  decoration:
+    isPermanent: true
+    slots:
+      - 27-35
+    item:
+      material: CYAN_STAINED_GLASS_PANE
+      name: '&f'
+  categories:
+    type: SUPERIORSKYBLOCK_WARP_CATEGORIES
+    slots:
+      - 0-26
+    item:
+      material: '%material%'
+      name: '%name%'
+      lore:
+        - '&f%description%'
+        - ''
+        - '&7&o(( &f&oLeft-Click &7&oto view warps. ))'
+        - '&7&o(( &f&oRight-Click &7&oto manage category. ))'
+  next:
+    type: NEXT
+    slot: 35
+    isPermanent: true
+    item:
+      material: PAPER
+      name: '&fNext Page'
+  previous:
+    type: PREVIOUS
+    slot: 27
+    isPermanent: true
+    item:
+      material: PAPER
+      name: '&fPrevious Page'

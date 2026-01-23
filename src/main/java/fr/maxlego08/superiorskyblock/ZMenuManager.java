@@ -24,10 +24,18 @@ import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmBan;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmDisband;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmKick;
 import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmLeave;
+import fr.maxlego08.superiorskyblock.buttons.confirm.ButtonConfirmTransfer;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberBanButton;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberInfoButton;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMemberKickButton;
 import fr.maxlego08.superiorskyblock.buttons.members.IslandMembersButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoriesButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryIconConfirmButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryIconLoreButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryIconNameButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryIconTypeButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryManageIconButton;
+import fr.maxlego08.superiorskyblock.buttons.warps.WarpCategoryManageRenameButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconConfirmButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconDisplayButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconLoreButton;
@@ -139,7 +147,8 @@ public class ZMenuManager implements Listener {
     }
 
     /**
-     * Retrieves a {@link PlayerCache} for the given {@link Player}. If a cache does not already exist for the given
+     * Retrieves a {@link PlayerCache} for the given {@link Player}. If a cache does
+     * not already exist for the given
      * player, a new one is created.
      *
      * @param player the player to retrieve the cache for
@@ -150,7 +159,8 @@ public class ZMenuManager implements Listener {
     }
 
     /**
-     * Retrieves a {@link PlayerCache} for the given {@link Player}. If none exists, {@code null} is returned.
+     * Retrieves a {@link PlayerCache} for the given {@link Player}. If none exists,
+     * {@code null} is returned.
      *
      * @param player the player to retrieve the cache for
      * @return the cache for the given player, or {@code null} if none exists
@@ -192,6 +202,7 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmDisband.class, "SUPERIORSKYBLOCK_CONFIRM_DISBAND"));
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmKick.class, "SUPERIORSKYBLOCK_CONFIRM_KICK"));
         this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmLeave.class, "SUPERIORSKYBLOCK_CONFIRM_LEAVE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, ButtonConfirmTransfer.class, "SUPERIORSKYBLOCK_CONFIRM_TRANSFER"));
         this.buttonManager.register(new NoneLoader(this.plugin, TargetShowButton.class, "SUPERIORSKYBLOCK_TARGET_SHOW"));
         this.buttonManager.register(new NoneLoader(this.plugin, BankLogsButton.class, "SUPERIORSKYBLOCK_BANK_LOGS"));
         this.buttonManager.register(new NoneLoader(this.plugin, BannedPlayersButton.class, "SUPERIORSKYBLOCK_BANNED_PLAYERS"));
@@ -210,11 +221,20 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new NoneLoader(this.plugin, WarpIconLoreButton.class, "SUPERIORSKYBLOCK_WARP_ICON_LORE"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpIconTypeButton.class, "SUPERIORSKYBLOCK_WARP_ICON_TYPE"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpIconDisplayButton.class, "SUPERIORSKYBLOCK_WARP_ICON_DISPLAY"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoriesButton.class, "SUPERIORSKYBLOCK_WARP_CATEGORIES"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconConfirmButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_CONFIRM"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconLoreButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_LORE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconNameButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_NAME"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryIconTypeButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_ICON_TYPE"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryManageIconButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_ICON"));
+        this.buttonManager.register(new NoneLoader(this.plugin, WarpCategoryManageRenameButton.class,"SUPERIORSKYBLOCK_WARP_CATEGORY_MANAGE_RENAME"));
     }
 
     /**
-     * Loads inventory configurations from files located in the "inventories" folder.
-     * If the folder or any expected inventory file does not exist, they are created.
+     * Loads inventory configurations from files located in the "inventories"
+     * folder.
+     * If the folder or any expected inventory file does not exist, they are
+     * created.
      * Then, each inventory file is processed to load its corresponding inventory
      * data into the inventory manager. Any invalid or erroneous inventory files are
      * logged with stack traces for debugging.
@@ -231,7 +251,7 @@ public class ZMenuManager implements Listener {
                 "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", //
                 "confirm-leave", "warps", "player-language", "values", "bank-logs", "banned-players", "coops", "counts", "visitors", //
                 "upgrades", "warp-manage", "warp-icon-edit", "global-warps", "island-bank", "island-ratings", "island-rate", //
-                "island-chests", "unique-visitors");
+                "island-chests", "unique-visitors", "warp-categories", "warp-category-manage", "warp-category-icon-edit");
 
         inventories.forEach(inventoryName -> {
             if (!new File(plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
@@ -244,7 +264,8 @@ public class ZMenuManager implements Listener {
         this.files(folder, file -> {
             try {
                 Inventory inventory = this.inventoryManager.loadInventory(this.plugin, file);
-                MenuType menuType = MenuType.valueOf(inventory.getFileName().toUpperCase(Locale.ENGLISH).replace("-", "_"));
+                MenuType menuType = MenuType
+                        .valueOf(inventory.getFileName().toUpperCase(Locale.ENGLISH).replace("-", "_"));
                 ZMenuManager.this.inventories.put(menuType, inventory);
             } catch (InventoryException exception) {
                 exception.printStackTrace();
@@ -269,7 +290,8 @@ public class ZMenuManager implements Listener {
     }
 
     /**
-     * Retrieves the PlayerCache associated with the given player and applies the provided consumer to it.
+     * Retrieves the PlayerCache associated with the given player and applies the
+     * provided consumer to it.
      *
      * @param player   the player whose cache is to be retrieved
      * @param consumer the consumer to be applied to the player's cache
@@ -314,7 +336,8 @@ public class ZMenuManager implements Listener {
     }
 
     /**
-     * Opens the inventory with the given name for the given player. If the given inventory does not exist, the player is notified.
+     * Opens the inventory with the given name for the given player. If the given
+     * inventory does not exist, the player is notified.
      *
      * @param player        the player for which to open the inventory
      * @param inventoryName the name of the inventory to open
@@ -343,7 +366,8 @@ public class ZMenuManager implements Listener {
      * Returns the inventory associated with the given menu type.
      *
      * @param menuType the menu type for which to retrieve the inventory
-     * @return the inventory associated with the given menu type, or {@code null} if no such inventory exists
+     * @return the inventory associated with the given menu type, or {@code null} if
+     *         no such inventory exists
      */
     public Inventory getInventory(MenuType menuType) {
         return this.inventories.get(menuType);
