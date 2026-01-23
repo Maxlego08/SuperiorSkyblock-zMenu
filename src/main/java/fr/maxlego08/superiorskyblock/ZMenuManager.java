@@ -43,7 +43,6 @@ import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconNameButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpIconTypeButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageIconButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageLocationButton;
-import fr.maxlego08.superiorskyblock.buttons.warps.WarpManagePrivacyButton;
 import fr.maxlego08.superiorskyblock.buttons.warps.WarpManageRenameButton;
 import fr.maxlego08.superiorskyblock.loader.BankActionLoader;
 import fr.maxlego08.superiorskyblock.loader.BankLogsSortLoader;
@@ -61,6 +60,7 @@ import fr.maxlego08.superiorskyblock.loader.IslandTopSortLoader;
 import fr.maxlego08.superiorskyblock.loader.PlayerLanguageLoader;
 import fr.maxlego08.superiorskyblock.loader.RateLoader;
 import fr.maxlego08.superiorskyblock.loader.UpgradeLoader;
+import fr.maxlego08.superiorskyblock.loader.WarpPrivacyLoader;
 import fr.maxlego08.superiorskyblock.loader.WarpsLoader;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -72,6 +72,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -193,6 +194,7 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new RateLoader(this.plugin));
         this.buttonManager.register(new UpgradeLoader(this.plugin));
         this.buttonManager.register(new WarpsLoader(this.plugin));
+        this.buttonManager.register(new WarpPrivacyLoader(this.plugin));
 
         this.buttonManager.register(new NoneLoader(this.plugin, IslandMembersButton.class, "SUPERIORSKYBLOCK_MEMBERS"));
         this.buttonManager.register(new NoneLoader(this.plugin, IslandMemberInfoButton.class, "SUPERIORSKYBLOCK_MEMBER_INFO"));
@@ -212,7 +214,6 @@ public class ZMenuManager implements Listener {
         this.buttonManager.register(new NoneLoader(this.plugin, IslandChestButton.class, "SUPERIORSKYBLOCK_CHESTS"));
         this.buttonManager.register(new NoneLoader(this.plugin, UniqueVisitorsButton.class, "SUPERIORSKYBLOCK_UNIQUE_VISITORS"));
         this.buttonManager.register(new NoneLoader(this.plugin, VisitorsButton.class, "SUPERIORSKYBLOCK_VISITORS"));
-        this.buttonManager.register(new NoneLoader(this.plugin, WarpManagePrivacyButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_PRIVACY"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageLocationButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_LOCATION"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageRenameButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_RENAME"));
         this.buttonManager.register(new NoneLoader(this.plugin, WarpManageIconButton.class, "SUPERIORSKYBLOCK_WARP_MANAGE_ICON"));
@@ -248,14 +249,14 @@ public class ZMenuManager implements Listener {
 
         // Save inventories files
         List<String> inventories = Arrays.asList("island-creation", "settings", "biomes", "members", "member-manage", "member-role", //
-                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", //
+                "permissions", "control-panel", "top-islands", "border-color", "confirm-ban", "confirm-disband", "confirm-kick", "confirm-transfer", //
                 "confirm-leave", "warps", "player-language", "values", "bank-logs", "banned-players", "coops", "counts", "visitors", //
                 "upgrades", "warp-manage", "warp-icon-edit", "global-warps", "island-bank", "island-ratings", "island-rate", //
                 "island-chests", "unique-visitors", "warp-categories", "warp-category-manage", "warp-category-icon-edit");
 
         inventories.forEach(inventoryName -> {
-            if (!new File(plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
-                this.plugin.saveResource("inventories/" + inventoryName + ".yml", false);
+            if (!new File(this.plugin.getDataFolder(), "inventories/" + inventoryName + ".yml").exists()) {
+                this.saveResource("inventories/" + inventoryName + ".yml", new File(this.plugin.getDataFolder(), "inventories/" + inventoryName + ".yml"));
             }
         });
 
@@ -271,6 +272,19 @@ public class ZMenuManager implements Listener {
                 exception.printStackTrace();
             }
         });
+    }
+
+    private void saveResource(String resourcePath, File outputFile) {
+        try (InputStream in = ZMenuModule.class.getClassLoader().getResourceAsStream(resourcePath)) {
+            System.out.println("IN " + in);
+            if (in == null) {
+                throw new IOException("Ressource introuvable : " + resourcePath);
+            }
+            var r = Files.copy(in, outputFile.toPath());
+            System.out.println(" Result ! " + r);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**

@@ -28,12 +28,14 @@ import java.util.function.BiConsumer;
 
 public class ZMenusProvider implements MenusProvider {
 
+    private final SuperiorSkyblockPlugin plugin;
     private final Map<Schematic, MenuIslandCreationConfig> ISLAND_CREATION_CONFIG_CACHE = new IdentityHashMap<>();
 
     private final ZMenuManager zMenuManager;
     private final MenusProvider originalMenusProvider;
 
     public ZMenusProvider(SuperiorSkyblockPlugin plugin) {
+        this.plugin = plugin;
         this.zMenuManager = new ZMenuManager(plugin);
         this.originalMenusProvider = plugin.getProviders().getMenusProvider();
     }
@@ -109,6 +111,17 @@ public class ZMenusProvider implements MenusProvider {
     public void openConfirmLeave(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         this.zMenuManager.openInventory(targetPlayer, "confirm-leave");
+    }
+
+    @Override
+    public void openConfirmTransfer(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland, SuperiorPlayer newOwner) {
+        Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
+        Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
+        Preconditions.checkNotNull(newOwner, "newOwner parameter cannot be null.");
+        this.zMenuManager.openInventory(targetPlayer, "confirm-transfer", cache -> {
+            cache.setTargetPlayer(newOwner);
+            cache.setIsland(targetIsland);
+        });
     }
 
     @Override
@@ -270,8 +283,8 @@ public class ZMenusProvider implements MenusProvider {
     @Override
     public void openMissions(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
-        // TODO: Implement this
-        this.originalMenusProvider.openMissions(targetPlayer, previousMenu);
+        this.zMenuManager.openInventory(targetPlayer, "missions");
+
     }
 
     @Override
@@ -279,8 +292,7 @@ public class ZMenusProvider implements MenusProvider {
             MissionCategory missionCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(missionCategory, "missionCategory parameter cannot be null.");
-        // TODO: Implement this
-        this.originalMenusProvider.openMissionsCategory(targetPlayer, previousMenu, missionCategory);
+        this.zMenuManager.openInventory(targetPlayer, "missions-category", cache -> cache.setMissionCategory(missionCategory));
     }
 
     @Override
@@ -425,7 +437,13 @@ public class ZMenusProvider implements MenusProvider {
     public void openWarpCategories(SuperiorPlayer targetPlayer, ISuperiorMenu previousMenu, Island targetIsland) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetIsland, "targetIsland parameter cannot be null.");
-        this.zMenuManager.openInventory(targetPlayer, "warp-categories", cache -> cache.setIsland(targetIsland));
+
+        if (this.plugin.getSettings().isWarpCategories() && targetIsland.getWarpCategories().size() > 1) {
+            this.zMenuManager.openInventory(targetPlayer, "warp-categories", cache -> cache.setIsland(targetIsland));
+        } else {
+            WarpCategory warpCategory = targetIsland.getWarpCategories().values().stream().findFirst().orElseGet(() -> targetIsland.createWarpCategory("Default Category"));
+            openWarps(targetPlayer, previousMenu, warpCategory);
+        }
     }
 
     @Override
@@ -443,8 +461,7 @@ public class ZMenusProvider implements MenusProvider {
             WarpCategory targetCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetCategory, "targetCategory parameter cannot be null.");
-        this.zMenuManager.openInventory(targetPlayer, "warp-category-icon-edit",
-                cache -> cache.setWarpCategory(targetCategory));
+        this.zMenuManager.openInventory(targetPlayer, "warp-category-icon-edit", cache -> cache.setWarpCategory(targetCategory));
     }
 
     @Override
@@ -452,8 +469,7 @@ public class ZMenusProvider implements MenusProvider {
             WarpCategory targetCategory) {
         Preconditions.checkNotNull(targetPlayer, "targetPlayer parameter cannot be null.");
         Preconditions.checkNotNull(targetCategory, "targetCategory parameter cannot be null.");
-        this.zMenuManager.openInventory(targetPlayer, "warp-category-manage",
-                cache -> cache.setWarpCategory(targetCategory));
+        this.zMenuManager.openInventory(targetPlayer, "warp-category-manage", cache -> cache.setWarpCategory(targetCategory));
     }
 
     @Override
@@ -498,8 +514,7 @@ public class ZMenusProvider implements MenusProvider {
     }
 
     private void refreshInventories(MenuType menuType) {
-        iterateOpenedInventories(menuType,
-                (inventory, player) -> this.zMenuManager.getInventoryManager().updateInventory(player));
+        iterateOpenedInventories(menuType, (inventory, player) -> this.zMenuManager.getInventoryManager().updateInventory(player));
     }
 
     private void refreshInventories(MenuType menuType, Predicate<PlayerCache> predicate) {
@@ -513,8 +528,7 @@ public class ZMenusProvider implements MenusProvider {
     private void destroyInventories(MenuType menuType, Predicate<PlayerCache> predicate) {
         iterateOpenedInventories(menuType, (inventory, player) -> {
             PlayerCache playerCache = this.zMenuManager.getCacheOrNull(player);
-            if (playerCache != null && predicate.apply(playerCache))
-                player.closeInventory();
+            if (playerCache != null && predicate.apply(playerCache)) player.closeInventory();
         });
     }
 

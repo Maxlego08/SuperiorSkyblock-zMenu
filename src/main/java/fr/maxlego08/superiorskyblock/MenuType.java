@@ -36,6 +36,6 @@ public enum MenuType {
     WARP_CATEGORIES,
     WARP_ICON_EDIT,
     WARP_MANAGE,
-    WARPS
+    WARPS,
 
 }
